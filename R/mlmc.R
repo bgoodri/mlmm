@@ -92,7 +92,7 @@
 #' @export
 
 mlmc=function(formula_completed,formula_missing,formula_censor=NULL,formula_subject,pdata,respond_dep_missing=TRUE,response_censorlim=NULL,pidname,sidname,iterno=100,chains=3,pathname,thin=1,seed=125,algorithm="NUTS",warmup=floor(iterno/2),adapt_delta_value=0.85,savefile=TRUE,usefit=T,stanfit)
-{ #set_cppo(mode="fast")
+{
   current.na.action=options('na.action')
   options(na.action='na.pass')
   t=stats::terms(formula_completed)

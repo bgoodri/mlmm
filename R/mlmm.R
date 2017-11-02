@@ -120,7 +120,10 @@ mlmm=function(formula_completed,formula_missing,formula_subject,pdata,respond_de
   
   initvalue1=function () {setinitvalues(npred=npred,np=np,npred_miss=npred_miss,npred_sub=npred_sub,nmiss=nmiss,nsid=nsid)}
 
-  if (usefit==TRUE) fitmlmm=rstan::stan(fit=stanfit,data=prstan_data,iter=iterno,init=initvalue1,pars=parsstr,seed=seed,thin=thin,algorithm=algorithm,warmup=warmup,chains=chains,control=list(adapt_delta=adapt_delta_value),sample_file=paste(pathname,"samples",sep=""))
+  if (usefit==TRUE) {
+    stanfit <- stanmodels$mmlm_code
+    fitmlmm=rstan::sampling(stanfit,data=prstan_data,iter=iterno,pars=parsstr,seed=seed,thin=thin,algorithm=algorithm,warmup=warmup,chains=chains,control=list(adapt_delta=adapt_delta_value),sample_file=paste(pathname,"samples",sep=""))
+  }
     else            fitmlmm=rstan::stan(model_code=readstancode(modelname="mlmm"),data=prstan_data,iter=iterno,init=initvalue1,pars=parsstr,seed=seed,thin=thin,algorithm=algorithm,warmup=warmup,chains=chains,control=list(adapt_delta=adapt_delta_value),sample_file=paste(pathname,"samples",sep=""))
   print(fitmlmm)
   if (savefile==TRUE) utils::write.csv(as.array(fitmlmm),file=paste(pathname,"outsummary.csv",sep=""),row.names=TRUE)
