@@ -50,7 +50,7 @@
 #'
 #' model3=mlmm(formula_completed=var1~var2+treatment,formula_missing=miss~var2,
 #' formula_subject=~treatment,pdata=pdata,respond_dep_missing=TRUE,
-#' pidname="geneid",sidname="sid",pathname=pathdir,iterno=5,chains=1,savefile=FALSE)
+#' pidname="geneid",sidname="sid",pathname=pathdir,iterno=50,chains=2,usefit=F,savefile=FALSE)
 #' }
 #' @export
 
