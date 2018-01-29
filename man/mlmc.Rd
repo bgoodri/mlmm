@@ -113,11 +113,9 @@ formula_censor=censor~1;
 formula_subject=~treatment;
 response_censorlim=0.002;
 pathdir=getwd()
-fp=system.file("demo",package="mlmm")
-mcfit=readRDS(paste0(fp,"/demo/mlmc.rds"))
 model1=mlmc(formula_completed=var1~var2+treatment,formula_missing=miss~var2,
 formula_censor=censor~1,formula_subject=~treatment,pdata=pdata,response_censorlim=0.002,
 respond_dep_missing=TRUE,pidname="geneid",sidname="sid",pathname=pathdir,
-iterno=5,chains=1,savefile=FALSE,usefit=T,stanfit=mcfit)
+iterno=50,chains=2,savefile=FALSE,usefit=FALSE,stanfit=mcfit)
 }
 }
